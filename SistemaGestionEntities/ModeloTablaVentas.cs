@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace SistemaGestionEntities
 {
-    public class Venta
+    public class ModeloTablaVentas
     {
         public int Id { get; set; }
         public string Comentarios { get; set; }
-        public Usuario Usuario { get; set; }
+
+        public string Usuario { get; set; }
     }
 }

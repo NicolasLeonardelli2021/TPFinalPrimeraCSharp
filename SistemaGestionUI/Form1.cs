@@ -39,5 +39,17 @@ namespace SistemaGestionUI
             PanelPrincipal.Controls.Add(form);
             form.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (PanelPrincipal.Controls.Count > 0)
+            {
+                PanelPrincipal.Controls.RemoveAt(0);
+            }
+            Listado_Ventas form = new Listado_Ventas();
+            form.TopLevel = false;
+            PanelPrincipal.Controls.Add(form);
+            form.Show();
+        }
     }
 }
