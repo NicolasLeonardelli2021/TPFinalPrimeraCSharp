@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestionData", "Siste
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestionBussiness", "SistemaGestionBussiness\SistemaGestionBussiness.csproj", "{E3AFABB7-7A1A-41F1-9EAB-DD9E7F809928}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoApi", "ProyectoApi\ProyectoApi.csproj", "{9887D638-07F8-4766-AF93-A887056E23CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoApi", "ProyectoApi\ProyectoApi.csproj", "{9887D638-07F8-4766-AF93-A887056E23CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaGestionWebApi", "SistemaGestionWebApi\SistemaGestionWebApi.csproj", "{5813C688-591A-48DC-B4D1-2D7B8C5D9492}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9887D638-07F8-4766-AF93-A887056E23CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9887D638-07F8-4766-AF93-A887056E23CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9887D638-07F8-4766-AF93-A887056E23CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5813C688-591A-48DC-B4D1-2D7B8C5D9492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5813C688-591A-48DC-B4D1-2D7B8C5D9492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5813C688-591A-48DC-B4D1-2D7B8C5D9492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5813C688-591A-48DC-B4D1-2D7B8C5D9492}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

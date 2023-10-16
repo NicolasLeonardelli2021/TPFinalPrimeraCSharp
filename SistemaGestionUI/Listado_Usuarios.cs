@@ -8,6 +8,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,11 +23,28 @@ namespace SistemaGestionUI
             InitializeComponent();
         }
 
-        public void cargarUsuarios()
+        private async Task cargarUsuarios()
         {
-            List<Usuario> lista = UsuarioBussiness.GetUsuarios();
-            dgUsuario.AutoGenerateColumns = false;
-            dgUsuario.DataSource = lista;
+            HttpClient client = new HttpClient();
+            List<Usuario>? list = null;
+            try
+            {
+                string path = @"https://localhost:7263/api/Usuarios";
+                HttpResponseMessage response = await client.GetAsync(path);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    list = await response.Content.ReadFromJsonAsync<List<Usuario>>();
+                    dgUsuario.AutoGenerateColumns = false;
+                    dgUsuario.DataSource = list;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         private void Listado_Usuarios_Load(object sender, EventArgs e)
@@ -50,7 +69,7 @@ namespace SistemaGestionUI
 
 
             int Id = (int)this.dgUsuario.Rows[e.RowIndex].Cells["id"].Value;
-            Usuario usuario = UsuarioBussiness.GetUsuarios().Where(x => x.Id == Id).FirstOrDefault();
+            Usuario usuario = cargarUsuarios.Where(x => x.Id == Id).FirstOrDefault();
 
             if (this.dgUsuario.Columns[e.ColumnIndex].Name == "Editar")
             {
@@ -62,8 +81,47 @@ namespace SistemaGestionUI
             else
                 if (this.dgUsuario.Columns[e.ColumnIndex].Name == "Eliminar")
             {
-                UsuarioBussiness.EliminarUsuario(usuario);
-                cargarUsuarios();
+
+                EliminarUsuario(usuario);
+
+
+
+
+                //UsuarioBussiness.EliminarUsuario(usuario);
+                //cargarUsuarios();
+            }
+        }
+
+
+        private async Task<bool> EliminarUsuario(Usuario usuario)
+        {
+           string path = @"https://localhost:7263/api/Usuarios";
+            HttpClient client = new HttpClient();
+
+            try
+            {
+                HttpRequestMessage request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Delete,
+                    Content = JsonContent.Create(usuario),
+                    RequestUri = new Uri(path, UriKind.Absolute)
+                };
+                HttpResponseMessage response = await client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+                if(response.StatusCode == HttpStatusCode.OK)
+                {
+                    MessageBox.Show("Se elimino correctamente");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrio un error al intentar eliminar el Usuario");
+                    return false;
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al intentar eliminar el Usuario");
+                return false;
             }
         }
     }
