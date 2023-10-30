@@ -169,6 +169,7 @@
             button1.TabIndex = 13;
             button1.Text = "Cancelar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // EnviarForm
             // 
@@ -200,6 +201,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "AltaUsuario";
             Text = "AltaUsuario";
+            Load += AltaUsuario_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

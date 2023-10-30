@@ -161,6 +161,7 @@
             button1.TabIndex = 13;
             button1.Text = "Cancelar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // EnviarForm
             // 
@@ -179,6 +180,7 @@
             comboBoxUser.Name = "comboBoxUser";
             comboBoxUser.Size = new Size(121, 23);
             comboBoxUser.TabIndex = 21;
+            comboBoxUser.SelectedIndexChanged += comboBoxUser_SelectedIndexChanged;
             // 
             // AltaProducto
             // 

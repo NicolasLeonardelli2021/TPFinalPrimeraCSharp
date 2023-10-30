@@ -59,5 +59,38 @@ namespace SistemaGestionData
                 return null;
             }
         }
+
+        //public static void crearUsuario(Usuario usuario)
+        //{
+        //    string connectionString = @"Server=ESCRITORIO;DataBase=SistemaGestion;Trusted_Connection=True";
+
+        //    string query = "INSERT INTO Usuario (Nombre, Apellido, NombreUsuario, Contraseña, Mail)" +
+        //        "VALUES(@Nombre,@Apellido,@NombreUsuario, @Contraseña, @Mail)";
+        //    try
+        //    {
+        //        using (SqlConnection connection = new SqlConnection(connectionString))
+        //        {
+        //            connection.Open();
+        //            using (SqlCommand comando = new SqlCommand(query, connection))
+        //            {
+        //                comando.Parameters.Add(new SqlParameter("Nombre", SqlDbType.VarChar) { Value = usuario.Nombre });
+        //                comando.Parameters.Add(new SqlParameter("Apellido", SqlDbType.VarChar) { Value = usuario.Apellido });
+        //                comando.Parameters.Add(new SqlParameter("NombreUsuario", SqlDbType.VarChar) { Value = usuario.NombreUsuario });
+        //                comando.Parameters.Add(new SqlParameter("Contraseña", SqlDbType.VarChar) { Value = usuario.Contraseña });
+        //                comando.Parameters.Add(new SqlParameter("Mail", SqlDbType.VarChar) { Value = usuario.Mail });
+
+        //                comando.ExecuteNonQuery();
+        //            }
+        //            connection.Close();
+        //        };
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw;
+        //    }
+        //}
+
     }
 }

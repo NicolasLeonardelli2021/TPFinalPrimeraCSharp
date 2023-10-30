@@ -17,9 +17,9 @@ namespace SistemaGestionWebApi.Controllers
         }
 
         [HttpDelete(Name = "EliminarProducto")]
-        public void Delete([FromBody] Producto producto)
+        public void Delete([FromBody] int id)
         {
-            ProductoBussiness.EliminarProducto(producto);
+            ProductoBussiness.EliminarProducto(id);
         }
 
         [HttpPut(Name = "ModificarProducto")]
@@ -28,7 +28,7 @@ namespace SistemaGestionWebApi.Controllers
             ProductoBussiness.ModificarProducto(producto);
         }
 
-        [HttpPost(Name = "crearUsuario")]
+        [HttpPost(Name = "crearProducto")]
         public void Post([FromBody] Producto producto)
         {
             ProductoBussiness.crearProducto(producto);

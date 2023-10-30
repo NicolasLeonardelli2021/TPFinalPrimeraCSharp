@@ -39,13 +39,14 @@ namespace SistemaGestionUI
             this.numCosto.Text = _producto.Costo.ToString();
             this.numPrecio.Text = _producto.PrecioVenta.ToString();
             this.numStock.Text = _producto.Stock.ToString();
+            this.comboBoxUser.ValueMember = _producto.IdUsuario.ToString();
             //this.numIdUsuario.Text = _producto.IdUsuario.ToString();
         }
 
 
-        public void CargarCombo()
+        public async void CargarCombo()
         {
-            List<Usuario> listado = UsuarioBussiness.GetUsuarios();
+            List<Usuario> listado = await ContextoUsuarios.cargarUsuarios();
             ComboboxItem item = new ComboboxItem();
             foreach (var items in listado)
             {
@@ -62,7 +63,7 @@ namespace SistemaGestionUI
             CargarCombo();
         }
 
-        private void EnviarForm_Click(object sender, EventArgs e)
+        private async void EnviarForm_Click(object sender, EventArgs e)
         {
             Producto producto = new Producto();
             //producto.Id = _producto.Id;
@@ -72,15 +73,25 @@ namespace SistemaGestionUI
             producto.PrecioVenta = Decimal.Parse(numPrecio.Text);
             producto.IdUsuario = Int32.Parse((comboBoxUser.SelectedItem as ComboboxItem).Value.ToString());
 
-            //if (agregar)
-            //{
-                ProductoBussiness.crearProducto(producto);
-            //}
-            //else
-            //{
-                //UsuarioBussiness.EditarUsuario(usuario);
-            //}
+            if (agregar)
+            {
+                await ContextoProductos.GrabarProducto(producto);
+            }
+            else
+            {
+                await ContextoProductos.ModificarProducto(producto);
+            }
             DialogResult = DialogResult.OK;
+        }
+
+        private void comboBoxUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

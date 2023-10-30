@@ -11,7 +11,6 @@ namespace SistemaGestionEntities
         public int Id { get; set; }
         public int stock { get; set;}
         public int IdProducto { get; set; }
-
         public int IdVenta { get; set; }
     }
 }

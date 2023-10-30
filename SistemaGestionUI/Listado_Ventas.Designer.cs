@@ -33,6 +33,7 @@
             Comentarios = new DataGridViewTextBoxColumn();
             Usuario = new DataGridViewTextBoxColumn();
             Detalle = new DataGridViewButtonColumn();
+            btnNuevaVenta = new Button();
             ((System.ComponentModel.ISupportInitialize)dgVentas).BeginInit();
             SuspendLayout();
             // 
@@ -71,11 +72,22 @@
             Detalle.Text = "Detalle";
             Detalle.UseColumnTextForButtonValue = true;
             // 
+            // btnNuevaVenta
+            // 
+            btnNuevaVenta.Location = new Point(606, 47);
+            btnNuevaVenta.Name = "btnNuevaVenta";
+            btnNuevaVenta.Size = new Size(124, 23);
+            btnNuevaVenta.TabIndex = 1;
+            btnNuevaVenta.Text = "Nueva Venta";
+            btnNuevaVenta.UseVisualStyleBackColor = true;
+            btnNuevaVenta.Click += btnNuevaVenta_Click;
+            // 
             // Listado_Ventas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(844, 411);
+            Controls.Add(btnNuevaVenta);
             Controls.Add(dgVentas);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Listado_Ventas";
@@ -92,5 +104,6 @@
         private DataGridViewTextBoxColumn Comentarios;
         private DataGridViewTextBoxColumn Usuario;
         private DataGridViewButtonColumn Detalle;
+        private Button btnNuevaVenta;
     }
 }

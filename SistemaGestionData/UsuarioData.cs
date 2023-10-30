@@ -128,7 +128,7 @@ namespace SistemaGestionData
 
         }
 
-        public static void EliminarUsuario(Usuario usuario)
+        public static void EliminarUsuario(int id)
         {
             string connectionString = @"Server=ESCRITORIO;DataBase=SistemaGestion;Trusted_Connection=True";
 
@@ -141,7 +141,7 @@ namespace SistemaGestionData
                     connection.Open();
                     using (SqlCommand comando = new SqlCommand(query, connection))
                     {
-                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = usuario.Id });
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = id });
 
                         comando.ExecuteNonQuery();
                     }

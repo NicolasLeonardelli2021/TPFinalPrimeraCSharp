@@ -33,3 +33,4 @@ C:\Users\Nico\source\repos\SistemaGestion\SistemaGestionUI\obj\Debug\net6.0-wind
 C:\Users\Nico\source\repos\SistemaGestion\SistemaGestionUI\obj\Debug\net6.0-windows\SistemaGestionUI.Listado_Productos.resources
 C:\Users\Nico\source\repos\SistemaGestion\SistemaGestionUI\obj\Debug\net6.0-windows\SistemaGestionUI.AltaProducto.resources
 C:\Users\Nico\source\repos\SistemaGestion\SistemaGestionUI\obj\Debug\net6.0-windows\SistemaGestionUI.Listado_Ventas.resources
+C:\Users\Nico\source\repos\SistemaGestion\SistemaGestionUI\obj\Debug\net6.0-windows\SistemaGestionUI.AltaVenta.resources

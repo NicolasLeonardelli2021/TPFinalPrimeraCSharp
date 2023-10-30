@@ -24,9 +24,9 @@ namespace SistemaGestionUI
             cargarProductos();
         }
 
-        private void cargarProductos()
+        private async void cargarProductos()
         {
-            List<Producto> lista = ProductoBussiness.GetProductos();
+            List<Producto> lista = await ContextoProductos.CargarProductos();
             dgProducto.AutoGenerateColumns = false;
             dgProducto.DataSource = lista;
         }
@@ -44,13 +44,13 @@ namespace SistemaGestionUI
 
         }
 
-        private void dgProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
 
 
             int Id = (int)this.dgProducto.Rows[e.RowIndex].Cells["id"].Value;
-            Producto producto = ProductoBussiness.GetProductos().Where(x => x.Id == Id).FirstOrDefault();
+            Producto producto = await ContextoProductos.ObtenerProducto(Id);
 
             if (this.dgProducto.Columns[e.ColumnIndex].Name == "Editar")
             {
@@ -62,7 +62,7 @@ namespace SistemaGestionUI
             else
                 if (this.dgProducto.Columns[e.ColumnIndex].Name == "Eliminar")
             {
-                ProductoBussiness.EliminarProducto(producto);
+                await ContextoProductos.EliminarProducto(producto);
                 cargarProductos();
             }
         }
