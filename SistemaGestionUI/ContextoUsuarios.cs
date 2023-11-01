@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace SistemaGestionUI
 {
-    public  class ContextoUsuarios
+    public class ContextoUsuarios
     {
         #region Get Usuarios
-        public static async  Task<List<Usuario>> cargarUsuarios()
+        public static async Task<List<Usuario>> cargarUsuarios()
         {
             HttpClient client = new HttpClient();
             List<Usuario>? list = null;
@@ -24,7 +24,7 @@ namespace SistemaGestionUI
                 if (response.IsSuccessStatusCode)
                 {
                     list = await response.Content.ReadFromJsonAsync<List<Usuario>>();
-                  
+
                 }
                 return list;
             }
@@ -65,12 +65,11 @@ namespace SistemaGestionUI
                 MessageBox.Show("Ocurrio un error al intentar dar de alta");
                 return false;
             }
-
         }
         #endregion
 
         #region POST Traer un Usuario
-        public static async Task<Usuario> ObtenerUsuario (int id)
+        public static async Task<Usuario> ObtenerUsuario(int id)
         {
             HttpClient client = new HttpClient();
             List<Usuario>? list = null;
@@ -85,12 +84,12 @@ namespace SistemaGestionUI
 
                 }
                 return list.Where(x => x.Id == id).FirstOrDefault();
-            
+
             }
             catch (Exception)
             {
                 return null;
-               
+
             }
         }
         #endregion
@@ -169,3 +168,4 @@ namespace SistemaGestionUI
         #endregion
     }
 }
+

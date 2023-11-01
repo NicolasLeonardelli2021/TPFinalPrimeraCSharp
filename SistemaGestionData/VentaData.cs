@@ -1,6 +1,7 @@
 ﻿using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,52 @@ namespace SistemaGestionData
 {
     public class VentaData
     {
+        public static void AltaVenta(Venta venta)
+        {
+            string connectionString = @"Server=ESCRITORIO;DataBase=SistemaGestion;Trusted_Connection=True";
+
+            string query = "INSERT INTO Venta (Comentarios, IdUsuario) VALUES( @Comentarios, @IdUsuario); INSERT into ProductoVendido (Stock, IdProducto, IdVenta) values (@Stock,@IdProducto, (select max(Id) from Venta))";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand comando = new SqlCommand(query, connection))
+                    {
+                        comando.Parameters.Add(new SqlParameter("Comentarios", SqlDbType.VarChar) { Value = venta.Comentarios });
+                        comando.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.Int) { Value = venta.Usuario.Id });
+                        comando.Parameters.Add(new SqlParameter("Stock", SqlDbType.Int) { Value = 2 });
+                        comando.Parameters.Add(new SqlParameter("IdProducto", SqlDbType.Int) { Value = 5 });
+
+                        comando.ExecuteNonQuery();
+                    }
+
+                    //string query2 = "select max(Id) from Venta";
+                    //int id = 0;
+                    //using (SqlCommand comando2 = new SqlCommand(query, connection))  // Conecta BD
+                    //{
+                    //    using (SqlDataReader dr = comando2.ExecuteReader())
+                    //    {  // Ejetular consulta
+                    //        if (dr.HasRows)           // hay Registros? 
+                    //        {
+                    //            dr.Read();
+                    //            id = Convert.ToInt32(dr["Id"]);
+                    //        }
+                    //    }
+
+                    //}
+                    
+                                connection.Close();
+                };
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         public static List<Venta> ListarVentas()
         {
 

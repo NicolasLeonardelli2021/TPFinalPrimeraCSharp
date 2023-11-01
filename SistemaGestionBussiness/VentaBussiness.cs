@@ -10,6 +10,11 @@ namespace SistemaGestionBussiness
 {
     public static class VentaBussiness
     {
+        public static void AltaVenta(Venta venta)
+        {
+            VentaData.AltaVenta(venta);
+        }
+
         public static List<Venta> ListarVenta()
         {
             return VentaData.ListarVentas();

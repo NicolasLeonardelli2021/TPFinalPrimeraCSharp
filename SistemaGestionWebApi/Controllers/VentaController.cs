@@ -15,5 +15,13 @@ namespace SistemaGestionWebApi.Controllers
             return VentaBussiness.ListarVenta()
                 .ToArray();
         }
+
+        [HttpPost(Name = "AltaVenta")]
+        public void Post([FromBody] Venta venta)
+        {
+            VentaBussiness.AltaVenta(venta);
+        }
+
+
     }
 }

@@ -30,13 +30,14 @@
         {
             comboProd = new ComboBox();
             label1 = new Label();
-            numericUpDown1 = new NumericUpDown();
+            numCatidad = new NumericUpDown();
             label2 = new Label();
             dataGridView1 = new DataGridView();
-            Producto = new DataGridViewTextBoxColumn();
+            Id = new DataGridViewTextBoxColumn();
+            NombreProducto = new DataGridViewTextBoxColumn();
             Cantidad = new DataGridViewTextBoxColumn();
             Precio = new DataGridViewTextBoxColumn();
-            SubTotal = new DataGridViewTextBoxColumn();
+            Subtotal = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
             labelTot = new Label();
             label4 = new Label();
@@ -46,7 +47,9 @@
             btnAgregarProd = new Button();
             button1 = new Button();
             button2 = new Button();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            textComentarios = new TextBox();
+            label6 = new Label();
+            ((System.ComponentModel.ISupportInitialize)numCatidad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -69,13 +72,13 @@
             label1.TabIndex = 1;
             label1.Text = "Producto";
             // 
-            // numericUpDown1
+            // numCatidad
             // 
-            numericUpDown1.Location = new Point(230, 64);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(55, 23);
-            numericUpDown1.TabIndex = 2;
-            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
+            numCatidad.Location = new Point(230, 64);
+            numCatidad.Name = "numCatidad";
+            numCatidad.Size = new Size(55, 23);
+            numCatidad.TabIndex = 2;
+            numCatidad.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // label2
             // 
@@ -89,36 +92,49 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Producto, Cantidad, Precio, SubTotal });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, NombreProducto, Cantidad, Precio, Subtotal });
             dataGridView1.Location = new Point(16, 42);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(581, 150);
             dataGridView1.TabIndex = 4;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // Producto
+            // Id
             // 
-            Producto.DataPropertyName = "Producto";
-            Producto.HeaderText = "Producto";
-            Producto.Name = "Producto";
+            Id.DataPropertyName = "Id";
+            Id.HeaderText = "Id";
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            // 
+            // NombreProducto
+            // 
+            NombreProducto.DataPropertyName = "NombreProducto";
+            NombreProducto.HeaderText = "NombreProducto";
+            NombreProducto.Name = "NombreProducto";
+            NombreProducto.ReadOnly = true;
             // 
             // Cantidad
             // 
             Cantidad.DataPropertyName = "Cantidad";
             Cantidad.HeaderText = "Cantidad";
             Cantidad.Name = "Cantidad";
+            Cantidad.ReadOnly = true;
             // 
             // Precio
             // 
             Precio.DataPropertyName = "Precio";
             Precio.HeaderText = "Precio";
             Precio.Name = "Precio";
+            Precio.ReadOnly = true;
             // 
-            // SubTotal
+            // Subtotal
             // 
-            SubTotal.DataPropertyName = "SubTotal";
-            SubTotal.HeaderText = "SubTotal";
-            SubTotal.Name = "SubTotal";
+            Subtotal.DataPropertyName = "Subtotal";
+            Subtotal.HeaderText = "subtotal";
+            Subtotal.Name = "Subtotal";
+            Subtotal.ReadOnly = true;
             // 
             // panel1
             // 
@@ -189,30 +205,51 @@
             btnAgregarProd.TabIndex = 8;
             btnAgregarProd.Text = "Agregar Producto";
             btnAgregarProd.UseVisualStyleBackColor = true;
+            btnAgregarProd.Click += btnAgregarProd_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(555, 346);
+            button1.Location = new Point(555, 404);
             button1.Name = "button1";
             button1.Size = new Size(95, 23);
             button1.TabIndex = 9;
             button1.Text = "Grabar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(465, 346);
+            button2.Location = new Point(465, 404);
             button2.Name = "button2";
             button2.Size = new Size(80, 23);
             button2.TabIndex = 10;
             button2.Text = "Cerrar";
             button2.UseVisualStyleBackColor = true;
             // 
+            // textComentarios
+            // 
+            textComentarios.Location = new Point(32, 366);
+            textComentarios.Name = "textComentarios";
+            textComentarios.Size = new Size(618, 23);
+            textComentarios.TabIndex = 11;
+            textComentarios.TextChanged += textBox1_TextChanged;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(32, 348);
+            label6.Name = "label6";
+            label6.Size = new Size(75, 15);
+            label6.TabIndex = 12;
+            label6.Text = "Comentarios";
+            // 
             // AltaVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(725, 381);
+            ClientSize = new Size(680, 439);
+            Controls.Add(label6);
+            Controls.Add(textComentarios);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(btnAgregarProd);
@@ -220,13 +257,13 @@
             Controls.Add(label5);
             Controls.Add(panel1);
             Controls.Add(label2);
-            Controls.Add(numericUpDown1);
+            Controls.Add(numCatidad);
             Controls.Add(label1);
             Controls.Add(comboProd);
             Name = "AltaVenta";
             Text = "AltaVenta";
             Load += AltaVenta_Load;
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numCatidad).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -238,15 +275,11 @@
 
         private ComboBox comboProd;
         private Label label1;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numCatidad;
         private Label label2;
         private DataGridView dataGridView1;
         private Panel panel1;
         private Label label3;
-        private DataGridViewTextBoxColumn Producto;
-        private DataGridViewTextBoxColumn Cantidad;
-        private DataGridViewTextBoxColumn Precio;
-        private DataGridViewTextBoxColumn SubTotal;
         private Label labelTot;
         private Label label4;
         private Label label5;
@@ -254,5 +287,12 @@
         private Button btnAgregarProd;
         private Button button1;
         private Button button2;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn NombreProducto;
+        private DataGridViewTextBoxColumn Cantidad;
+        private DataGridViewTextBoxColumn Precio;
+        private DataGridViewTextBoxColumn Subtotal;
+        private TextBox textComentarios;
+        private Label label6;
     }
 }
